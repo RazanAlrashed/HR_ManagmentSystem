@@ -1,0 +1,155 @@
+﻿@model IEnumerable<HR_ManagmentSystem.Models.BaseModel.Designation>
+@{
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+    <h2>Designation</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>Add</h2>
+                <h2>New Designation</h2>
+            </div>
+            <div class="col-sm-8">
+                <form asp-action="AddDesignation" method="post">
+                        <div class="input-box">
+                            <label class="form-label">Designation</label>
+                    <input type="text" name="Designations" class="form-control" placeholder="Enter Designation" />
+                    </div>
+                          <button type="submit" class="button-1">ADD</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Department Name</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Designations</td>
+                        <td>
+                        <a asp-action="EditDesignation" asp-route-id="@item.Id" class="text-success">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td>
+                        <a asp-action="DeletDesignation" asp-route-id="@item.Id" class="text-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+<style>
+    h2 {
+        text-align: center;
+        font-size: 48px;
+        font-weight: bold;
+        color: #000;
+        margin: 10px;
+    }
+
+    .row {
+        width: 100%;
+        background: #fff;
+        padding: 34px;
+        border-radius: 6px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        display: flex; 
+        justify-content: space-between; 
+    }
+
+        .row h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+
+    .col {
+        flex: 1; 
+        margin-right: 15px;
+    }
+
+        .col:last-child {
+            margin-right: 0; 
+        }
+
+
+    .input-box input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .button-1 {
+        background-color: #5A7A99;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+    }
+
+        .button-1:hover {
+            background-color: #4A6A89;
+        }
+
+    .table-responsive {
+        margin-top: 20px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #6A89A7;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #d0e7ff;
+    }
+
+    .text-success {
+        color: green;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>

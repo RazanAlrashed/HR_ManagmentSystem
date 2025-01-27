@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #e6edf3;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-right: 1px solid #d0d7de;
+        }
+
+            .sidebar h3 {
+                margin-bottom: 20px;
+                color: #007bff;
+                text-transform: uppercase;
+                font-size: 18px;
+            }
+
+            .sidebar a {
+                text-decoration: none;
+                color: #333;
+                font-size: 16px;
+                padding: 10px;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+                .sidebar a:hover {
+                    background-color: #d0e7ff;
+                }
+
+                /* Styling for the arrow button */
+                .sidebar a i {
+                    margin-left: 10px;
+                    font-size: 20px;
+                    transition: transform 0.3s ease;
+                }
+
+                /* Style for the hover effect on the arrow */
+                .sidebar a:hover i {
+                    transform: rotate(180deg); /* Rotates the arrow on hover */
+                }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>Admin Dashboard</h3>
+        <a href="/Dashboard/Display" class="back-to-home"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to Home</a>
+        <a href="/Admin/Department">Department</a>
+        <a href="/Admin/Designation">Designations</a>
+        <a href="/Admin/Employee">Employee</a>
+        <a href="/Admin/EmployeeList">Employee List</a>
+        <a href="/Admin/SalaryReport">Salary Report</a>
+        <a href="/Admin/LeaveApplications">Manage Leave</a>
+        <a href="/UserAuthentication/ChangePassword">Change Password</a>
+    </div>
+    <div class="main-content">
+        @RenderBody()
+    </div>
+</body>
+</html>

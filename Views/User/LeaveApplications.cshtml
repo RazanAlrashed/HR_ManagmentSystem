@@ -1,0 +1,148 @@
+﻿@model IEnumerable<HR_ManagmentSystem.Models.BaseModel.LeaveApplay>
+
+@{
+    ViewData["Title"] = "Your Leave Applications";
+}
+
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["msg"]
+    </div>
+}
+
+
+
+
+
+
+<style>
+    header, main {
+        display: block;
+        box-sizing: border-box;
+    }
+
+    body, h1, h2, p, ul, ol, li, dd, dl {
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        padding: 50px 20px;
+    }
+
+    h1, main {
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        display: inline-block;
+        text-align: left;
+        border-top: 1px solid #888;
+    }
+
+        table thead {
+            background: #bbb;
+        }
+
+        table tr:nth-child(even) {
+            background: #dfdfdf;
+        }
+
+        table th, table td {
+            padding: 10px 20px;
+            border: 1px solid #888;
+            border-width: 0 1px 1px;
+        }
+    media screen and (max-width: 1000px) {
+        /*put each field on its own line and align text to the right
+         *border is added for further readability
+         */
+        table td
+
+    {
+        display: block;
+        text-align: right;
+    }
+    /*put data-label content before each field floated to the left*/
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    /*remove thead*/
+    table thead {
+        display: none;
+    }
+
+    }
+
+    .button-1 {
+        background-color: #5A7A99;
+        border-radius: 8px;
+        border-style: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        justify-content: center;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        outline: none;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: color 100ms;
+        vertical-align: baseline;
+        user-select: none;
+        touch-action: manipulation;
+    }
+
+        .button-1:hover,
+        .button-1:focus {
+            background-color: #5A7A99;
+        }
+</style>
+<body>
+    <header>
+        <h2>Your Leave Applications</h2>
+    </header>
+    <main>
+        <div class="table" role="region" tabindex="0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Number of Day</th>
+                        <th>Reason</th>
+                        <th>Stutus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var leave in Model)
+                    {
+                        <tr>
+                            <td>@leave.StartDate.ToString("yyyy-MM-dd")</td>
+                            <td>@leave.EndDate.ToString("yyyy-MM-dd")</td>
+                            <td>@leave.NumberOfDay</td>
+                            <td>@leave.Reason</td>
+                            <td>@leave.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                    <a href="@Url.Action("ApplyLeave", "User")" class="button-1">Apply for Leave</a>
+            </div>
+        </div>
+    </main>
+</body>

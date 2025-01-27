@@ -1,0 +1,318 @@
+﻿@model HR_ManagmentSystem.Models.DTO.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main</title>
+    <style>
+
+        form {
+            width: 100%;
+            margin: 2%;
+            margin-top: 0%;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+            input[type=text]:focus, input[type=password]:focus {
+                border-color: #6A89A7;
+                box-shadow: 0 0 5px rgba(106, 137, 167, 0.5);
+            }
+
+        button {
+            background-color: #6A89A7;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+            justify-content: center;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #5A7A95;
+            }
+
+        .container {
+            padding: 16px;
+        }
+
+        .msg {
+            padding: 0px;
+        }
+
+        .err {
+            color: red;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .image-section {
+            background-color: rgba(255, 255, 255, 0.5);
+            background-image: url('/image/companyimg.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 35%;
+            transition: opacity 0.5s ease;
+        }
+
+            .image-section:hover {
+                opacity: 50%;
+            }
+
+        .company-name {
+            font-size: 10rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+
+        }
+
+        .about-us {
+            display: flex;
+            justify-content: space-between;
+            height: 400px;
+            padding: 40px;
+            background-color: #fff;
+            font-family: serif;
+            transition: transform 0.3s ease;
+        }
+
+        .about-col, .company-info {
+            width: 45%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-us:hover {
+            transform: translateY(-10px);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 96px;
+            color: #6A89A7;
+        }
+
+        p {
+            font-size: 24px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .team {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px;
+            transition: transform 0.3s ease;
+        }
+
+            .team:hover {
+                transform: scale(1.02);
+            }
+
+        .card {
+            text-align: center;
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .card h3 {
+                margin-top: 10px;
+                font-size: 1.5rem;
+            }
+
+            .card p {
+                font-size: 1rem;
+                color: #777;
+            }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+        .Login {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 400px;
+            padding: 40px;
+            background-color: #f5f8fa;
+            font-family: serif;
+            transition: transform 0.3s ease;
+        }
+
+            .Login:hover {
+                transform: translateY(-10px);
+            }
+
+        .Login-col {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .Login-form {
+            width: 50%;
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container label {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button {
+            background-color: #6A89A7;
+            color: white;
+            padding: 10px;
+            width: 50%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            justify-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #5A7A95;
+            }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #6A89A7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            a:hover {
+                text-decoration: underline;
+                color: #5A7A95;
+            }
+
+    </style>
+</head>
+
+<!-- Image Section -->
+<section class="image-section">
+    <div class="company-name">Techspire Innovations</div>
+</section>
+
+<!-- About Us Section -->
+<section class="about-us">
+    <div class="about-col">
+        <h2>About</h2>
+        <h2>Us</h2>
+    </div>
+    <div class="company-info">
+        <p>
+            We are dedicated to harnessing the power of technology to create innovative solutions that improve lives. Our team specializes in developing cutting-edge wearable devices and smart applications that seamlessly integrate into daily life. With a strong focus on healthcare and advanced technologies, our mission is to design products that empower individuals, provide peace of mind, and enhance well-being. We are passionate about solving real-world challenges through creativity, precision, and a relentless drive for excellence.
+        </p>
+    </div>
+</section>
+
+<!-- Team Cards Section -->
+<section class="team">
+    <div class="card">
+        <img src="/image/emp1.jpg" alt="CEO">
+        <h3>John Doe</h3>
+        <p>CEO</p>
+    </div>
+    <div class="card">
+        <img src="/image/emp2.jpg" alt="IT Manager">
+        <h3>Jane Smith</h3>
+        <p>IT Manager</p>
+    </div>
+    <div class="card">
+        <img src="/image/emp3.jpg" alt="Accounting Manager">
+        <h3>Michael Brown</h3>
+        <p>Accounting Manager</p>
+    </div>
+    <div class="card">
+        <img src="/image/emp4.jpg" alt="Marketing Manager">
+        <h3>Emily Green</h3>
+        <p>Marketing Manager</p>
+    </div>
+</section>
+
+<footer>
+    <div class="bg-light py-4">
+        <div class="container text-center">
+            <p class="text-muted mb-0 py-2">© 2025 All rights reserved</p>
+        </div>
+    </div>
+</footer>

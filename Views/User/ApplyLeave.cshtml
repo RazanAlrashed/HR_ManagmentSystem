@@ -1,0 +1,166 @@
+﻿
+@model HR_ManagmentSystem.Models.BaseModel.LeaveApplay
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Apply for Leave";
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #D1DBE4;
+    }
+
+    .wrapper {
+        position: relative;
+        max-width: 700px;
+        width: 100%;
+        background: #fff;
+        padding: 34px;
+        border-radius: 6px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+        .wrapper h2 {
+            position: relative;
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+
+            .wrapper h2::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 3px;
+                width: 28px;
+                border-radius: 12px;
+                background: #5A7A99;
+            }
+
+        .wrapper form {
+            margin-top: 30px;
+        }
+
+            .wrapper form .input-box {
+                height: 52px;
+                margin: 18px 0;
+            }
+
+    form .input-box input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding: 0 15px;
+        font-size: 17px;
+        font-weight: 400;
+        color: #333;
+        border: 1.5px solid #C7BEBE;
+        border-bottom-width: 2.5px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .input-box input:focus,
+    .input-box input:valid {
+        border-color: #5A7A99;
+    }
+
+    
+
+    .button-1 {
+        background-color: #5A7A99;
+        border-radius: 8px;
+        border-style: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        justify-content:center;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        outline: none;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: color 100ms;
+        vertical-align: baseline;
+        user-select: none;
+        touch-action: manipulation;
+    }
+
+        .button-1:hover,
+        .button-1:focus {
+            background-color: #5A7A99;
+        }
+    
+</style>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["msg"]
+    </div>
+}
+<body>
+    <div class="wrapper">
+        <h2>Applay For Leave</h2>
+        <form asp-action="ApplyLeave" method="post">
+            <div class="input-box">
+                <label asp-for="StartDate" class="control-label">Start Date</label>
+                <input type="datetime" placeholder="Start date" asp-for="StartDate">
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <label asp-for="EndDate" class="control-label">End Date</label>
+                <input type="datetime" placeholder="Enter End Date" asp-for="EndDate">
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <label asp-for="NumberOfDay" class="control-label">Number Of Day</label>
+                <input type="text" placeholder="Enter Number Of Day" asp-for="NumberOfDay">
+                <span asp-validation-for="NumberOfDay" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <label asp-for="Reason" class="control-label"></label>
+                <textarea placeholder="Reason" asp-for="Reason"></textarea>
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Status" value="Pending" />
+
+     
+
+            <div class="text">
+                <button type="submit" class="button-1">Submit</button>
+                <a href="@Url.Action("LeaveApplications", "User")" class="button-1">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+
+
+
+    
+
+    
+
+ 

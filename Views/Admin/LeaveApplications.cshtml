@@ -1,0 +1,151 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var leaveApplications = ViewBag.LeaveApplications as IEnumerable<dynamic>;
+}
+
+<div class="container">
+    <h2>Leave Applications</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Leave ID</th>
+                <th>Employee Name</th>
+                <th>Employee Number</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Number of Days</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (leaveApplications != null)
+            {
+                foreach (var item in leaveApplications)
+                {
+                    <tr>
+                        <td>@item.LeaveId</td>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.EmployeeNumber</td>
+                        <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.EndDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.NumberOfDay</td>
+                        <td>@item.Reason</td>
+                        <td>@item.Status</td>
+                        <td>
+                            <a asp-action="ApproveLeave" asp-route-id="@item.LeaveId" class="btn btn-success btn-sm">Approve</a>
+                            <a asp-action="RejectLeave" asp-route-id="@item.LeaveId" class="btn btn-danger btn-sm">Reject</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9" class="text-center">No leave applications available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px; 
+        color: #333;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px; 
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #333;
+        border-bottom: 2px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #ddd;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .btn-sm {
+        padding: 6px 12px; 
+        font-size: 12px;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+    .btn-danger {
+        background-color: #5A7A99;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #5A7A90;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+
+    media (max-width: 768px) {
+        th, td
+
+    {
+        font-size: 12px; 
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 5px 10px; 
+    }
+
+    }
+</style>
+

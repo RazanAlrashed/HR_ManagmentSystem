@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var SalaryReportData = ViewBag.SalaryReportData as IEnumerable<dynamic>;
+}
+
+<div class="container">
+
+    <h2>Salary Report</h2>
+
+    <!-- Search Box -->
+    <input type="text" id="searchInput" class="form-control" placeholder="Search by Employee Name or Department" onkeyup="searchTable()" />
+
+    <table class="table table-bordered" id="SalaryTable">
+        <thead>
+            <tr>
+                <th>Employee Number</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Salary</th>
+                <th>Bank Name</th>
+                <th>Bank Account Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (SalaryReportData != null && SalaryReportData.Any())
+            {
+                foreach (var item in SalaryReportData)
+                {
+                    <tr>
+                        <td>@item.EmployeeNumber</td>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.DepartmentName</td>
+                        <td>@item.DesignationName</td>
+                        <td>@item.Salary</td>
+                        <td>@item.BankName</td>
+                        <td>@item.BankAccountNumber</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">No salary data available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <a href="@Url.Action("ExportSalaryReportToExcel")" class="btn btn-primary">Export to Excel</a>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchTable() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toLowerCase();
+
+        var table = document.getElementById("SalaryTable");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {  
+            var cells = rows[i].getElementsByTagName("td");
+            var employeeName = cells[1].textContent || cells[1].innerText; 
+            var departmentName = cells[2].textContent || cells[2].innerText; 
+
+            if (employeeName.toLowerCase().indexOf(filter) > -1 || departmentName.toLowerCase().indexOf(filter) > -1) {
+                rows[i].style.display = ""; 
+            } else {
+                rows[i].style.display = "none"; 
+            }
+        }
+    }
+</script>
+
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .form-control {
+        margin-bottom: 20px; 
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px; 
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #333;
+        border-bottom: 2px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #ddd;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 10px 0;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .row {
+        margin-top: 20px;
+    }
+
+    media (max-width: 768px) {
+        th, td
+
+    {
+        font-size: 12px; 
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 5px 10px; 
+    }
+
+    .container {
+        padding: 10px; 
+    }
+
+    }
+</style>
+
+

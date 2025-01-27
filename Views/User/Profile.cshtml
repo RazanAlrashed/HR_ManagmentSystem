@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 900px;
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            margin-bottom: 30px;
+        }
+
+            .profile-header h2 {
+                font-size: 2.5rem;
+                color: #6A89A7;
+                margin-bottom: 10px;
+            }
+
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+            .profile-details p {
+                font-size: 1.2rem;
+                line-height: 1.5;
+            }
+
+            .profile-details strong {
+                color: #6A89A7;
+            }
+
+        media (max-width: 768px) {
+            .profile-details
+
+        {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .profile-details p {
+            font-size: 1rem;
+        }
+
+        }
+
+        .profile-details p:hover {
+            color: #444;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h2>Employee Profile</h2>
+        </div>
+        <div class="profile-details">
+            <p><strong>Employee Number:</strong> @Model.EmployeeNumber</p>
+            <p><strong>Employee Name:</strong> @Model.EmployeeName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Contact Number:</strong> @Model.ContactNumber</p>
+            <p><strong>Department:</strong> @Model.Department</p>
+            <p><strong>Designation:</strong> @Model.DesignationName</p>
+            <p><strong>Salary:</strong> @Model.Salary</p>
+            <p><strong>Bank Name:</strong> @Model.BankName</p>
+            <p><strong>Bank Account Number:</strong> @Model.BankAccountNumber</p>
+            <p><strong>Nationality:</strong> @Model.Nationality</p>
+            <p><strong>Address:</strong> @Model.Address</p>
+        </div>
+    </div>
+</body>
+</html>
